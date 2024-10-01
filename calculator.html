@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      background-color: #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      font-family: Arial, Helvetica, sans-serif;
+      border: 3px solid #ffffff;
+      border-radius: 25px;
+      padding: 20px;
+      width: 350px;
+      box-shadow: 0 0 30px rgba(211, 25, 202, 0.89);
+    }
+    .container:hover {
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.75);
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .buttons div {
+      background-color: #333333;
+      color: white;
+      height: 60px;
+      width: 60px;
+      text-align: center;
+      line-height: 60px;
+      border-radius: 50%;
+      font-size: 25px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .buttons div:hover {
+      background-color: #555555;
+      transform: scale(1.1);
+    }
+    #signbut {
+      background-color: rgb(254, 160, 10);
+    }
+    #signbut:hover {
+      background-color: rgb(255, 178, 31);
+    }
+    #numbut {
+      background-color: #4CAF50;
+    }
+    #numbut:hover {
+      background-color: #45a049;
+    }
+    .ansdisplay {
+      font-size: 40px;
+      color: #ffffff;
+      height: 60px;
+      margin: 0;
+      text-align: right;
+      padding: 5px 15px;
+      border-bottom: 2px solid #ffffff;
+      background-color: #333333;
+      border-radius: 15px;
+    }
+    .container {
+      margin-top: -10vh; /* Center vertically */
+    }
+    @media (max-width: 600px) {
+      .container {
+        width: 100%;
+        padding: 15px;
+        box-shadow: 0 0 20px rgba(211, 25, 202, 0.75);
+      }
+      .buttons div {
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        font-size: 20px;
+      }
+      .ansdisplay {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="ansdisplay"></p>
+    <div class="calci">
+      <div class="buttons">
+        <div id="numbut" onclick="display('1')">1</div>
+        <div id="numbut" onclick="display('2')">2</div>
+        <div id="numbut" onclick="display('3')">3</div>
+        <div id="signbut" onclick="display('+')">+</div>
+        <div id="numbut" onclick="display('4')">4</div>
+        <div id="numbut" onclick="display('5')">5</div>
+        <div id="numbut" onclick="display('6')">6</div>
+        <div id="signbut" onclick="display('-')">-</div>
+        <div id="numbut" onclick="display('7')">7</div>
+        <div id="numbut" onclick="display('8')">8</div>
+        <div id="numbut" onclick="display('9')">9</div>
+        <div id="signbut" onclick="display('*')">*</div>
+        <div id="numbut" onclick="display('0')">0</div>
+        <div id="numbut" onclick="display('.')">.</div>
+        <div id="numbut" onclick="equalto()">=</div>
+        <div id="signbut" onclick="display('/')">/</div>
+        <div id="numbut" onclick="cleardis()">CLR</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    let calculation = '';
+
+    function equalto() {
+      try {
+        const result = eval(calculation);
+        document.querySelector('.ansdisplay').innerHTML = result || '0';
+      } catch (error) {
+        document.querySelector('.ansdisplay').innerHTML = 'Error';
+      }
+    }
+
+    function display(n1) {
+      calculation += n1;
+      document.querySelector('.ansdisplay').innerHTML = calculation;
+    }
+
+    function cleardis() {
+      calculation = '';
+      document.querySelector('.ansdisplay').innerHTML = '';
+    }
+  </script>
+</body>
+</html>
